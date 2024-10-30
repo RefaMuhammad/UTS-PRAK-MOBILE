@@ -3,6 +3,7 @@ package lat.pam.utsproject
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -21,20 +22,20 @@ class ConfirmationActivity : AppCompatActivity() {
 
         val menuButton =  findViewById<Button>(R.id.backtoMenu)
 
-        val foodName = intent.getStringExtra("EXTRA_Nama_Makanan")
-        val portion = intent.getStringExtra("EXTRA_Jumlah_Porsi")
-        val orderName = intent.getStringExtra("EXTRA_Nama_Order")
-        val additionalNotes = intent.getStringExtra("EXTRA_NOTE")
+        val foodName = intent.getStringExtra("EXTRA_FOOD_NAME")
+        val portion = intent.getStringExtra("EXTRA_PORTION")
+        val orderName = intent.getStringExtra("EXTRA_ORDER_NAME")
+        val additionalNotes = intent.getStringExtra("EXTRA_ADDITIONAL_NOTES")
 
         // Tampilkan data di tampilan konfirmasi
-        foodNameTextView.text = foodName
-        portionTextView.text = portion
-        orderNameTextView.text = orderName
-        additionalNotesTextView.text = additionalNotes
+        foodNameTextView.text = "Food Name: $foodName"
+        portionTextView.text = "Number of Servings: $portion pax"
+        orderNameTextView.text = "Ordering Name: $orderName"
+        additionalNotesTextView.text = "Additional Notes: $additionalNotes"
 
 
         menuButton.setOnClickListener{
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, ListFoodActivity::class.java)
             startActivity(intent)
         }
 

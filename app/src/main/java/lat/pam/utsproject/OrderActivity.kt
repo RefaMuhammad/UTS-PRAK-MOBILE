@@ -17,26 +17,27 @@ class OrderActivity : AppCompatActivity() {
         setContentView(R.layout.activity_order)
 
         // Menghubungkan komponen tampilan
-        val namaMakananTextView = findViewById<TextView>(R.id.etFoodName)
+        val namaMakananEditText = findViewById<EditText>(R.id.etFoodName)
         val jumlahPorsiEditText = findViewById<EditText>(R.id.etServings)
         val namaOrderEditText = findViewById<EditText>(R.id.etName)
         val noteEditText = findViewById<EditText>(R.id.etNotes)
         val orderButton = findViewById<Button>(R.id.btnOrder)
 
         orderButton.setOnClickListener {
-            val namaMakanan = namaMakananTextView.text.toString()
+            val namaMakanan = namaMakananEditText.text.toString()
             val jumlahPorsi = jumlahPorsiEditText.text.toString()
             val namaOrder = namaOrderEditText.text.toString()
             val note = noteEditText.text.toString()
 
             val intent = Intent(this, ConfirmationActivity::class.java).apply {
-                putExtras("EXTRA_Nama_Makanan", namaMakanan)
-                putExtras("EXTRA_Jumlah_Porsi", jumlahPorsi)
-                putExtras("EXTRA_Nama_Order", namaOrder)
-                putExtras("EXTRA_Note", note)
+                putExtra("EXTRA_FOOD_NAME", namaMakanan)
+                putExtra("EXTRA_PORTION", jumlahPorsi)
+                putExtra("EXTRA_ORDER_NAME", namaOrder)
+                putExtra("EXTRA_ADDITIONAL_NOTES", note)
             }
             startActivity(intent)
         }
+
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
